@@ -14,12 +14,19 @@ void setup() {
 }
 
 void loop() {
+  // We read the inputed data throught the pot
   int potValueH = analogRead(potPinH);
-  int escSpeedH = map(potValueH, 0, 1023, 1000, 2000);  
-  escH.writeMicroseconds(escSpeedH);
-
   int potValueV = analogRead(potPinV);
-  int escSpeedV = map(potValueV, 0, 1023, 1000, 2000);  
+  
+  // if the number is between 1500 and 2000, it will go forward, making 1500 the stop point and 2000
+  // the heighest speed
+  // if the number is between 1500 and 1000, it will go backward, making 1500 the stop point and 1000
+  // the heighest speed
+  int escSpeedH = map(potValueH, 0, 1023, 1000, 2000);  
+  int escSpeedV = map(potValueV, 0, 1023, 1000, 2000);
+  escH.writeMicroseconds(escSpeedH);
   escV.writeMicroseconds(escSpeedV);
+
+  // some delay to stop overusing
   delay(10);  
 }
