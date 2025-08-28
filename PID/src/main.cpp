@@ -55,7 +55,13 @@ float readYPos();
 void updateSensors();
 // Control Functions
 void setTargets(float depth, float yaw, float x, float y);
-
+void setThrustersPower(Thruster_system& thruster, int Power); 
+void applyThrusterSignal(Thruster_system& thruster);
+void applyAllThrusterOutputs();
+void setThrusterStatus(Thruster_system& mythruster, bool enabled);    // Enable or disable a thruster
+void stopThruster(Thruster_system& mythruster);                       // Stops a thruster for a moment but keeps it enabled
+void emergencyStop();                                                 // Stops ALL for a moment but keeps them enabled
+void initThrusters();                                                 // Enables ALL and stops them
 
 // ----------------------------------- Setup & loop -----------------------------------
 void setup() {
@@ -130,11 +136,13 @@ float readMPU() {
 }
 
 float readXPos() {
+  // Computer Vision
 
   return;
 }
 
 float readYPos() {
+  // Computer Vision
 
   return;
 }
@@ -144,6 +152,7 @@ void updateSensors() {
   currentYaw = readMPU();
   currentSurge = readXPos();
   currentSway = readYPos();
+
   return;
 }
 
@@ -153,5 +162,94 @@ void setTargets(float depth, float yaw, float x, float y) {
   targetYaw = yaw;
   targetSurge = x;
   targetSway = y;
+
   return;
 }
+
+void setThrustersPower(Thruster_system& myThruster, int power) {
+  if(!myThruster.isEnabled) {
+    myThruster.power = 0;
+    myThruster.pwmSignal = myThruster.neutralPwm;
+    return;
+  }
+
+  power = constrain(power, -100,100);
+  myThruster.power = power;
+
+  if(!myThruster.power) 
+    myThruster.pwmSignal = myThruster.neutralPwm;
+  else
+    myThruster.pwmSignal = map(myThruster.power,-100,100,myThruster.minPwm, myThruster.maxPwm);
+
+  return;
+}
+
+void applyThrusterSignal(Thruster_system& myThruster) {
+  int analogValue = map(myThruster.pwmSignal, 1000, 2000, 0, 255);
+  analogWrite(myThruster.pin, analogValue);
+
+  return;
+}
+
+void applyAllThrusterOutputs() {
+  applyThrusterSignal(FR);
+  applyThrusterSignal(FL);
+  applyThrusterSignal(BR);
+  applyThrusterSignal(BL);
+  applyThrusterSignal(VL);
+  applyThrusterSignal(VR);
+
+  return;
+}
+
+void setThrusterStatus(Thruster_system& mythruster, bool enabled) {
+  mythruster.isEnabled = enabled;
+  if(!enabled) 
+    stopThruster(mythruster);
+  
+  return;
+}
+
+
+void stopThruster(Thruster_system& mythruster) {
+  mythruster.power = 0;
+  mythruster.pwmSignal = mythruster.neutralPwm;
+  applyThrusterSignal(mythruster);
+
+  return;
+}
+
+void emergencyStop() {
+  stopThruster(FR);
+  stopThruster(FL);
+  stopThruster(BR);
+  stopThruster(BL);
+  stopThruster(VR);
+  stopThruster(VL);
+
+  Serial.println("EMERGENCY STOP - All Thrusters Stopped!");
+
+  return;
+}
+
+void initThrusters() {
+  pinMode(FR.pin, OUTPUT);
+  pinMode(FL.pin, OUTPUT);
+  pinMode(BR.pin, OUTPUT);
+  pinMode(BL.pin, OUTPUT);
+  pinMode(VR.pin, OUTPUT);
+  pinMode(VL.pin, OUTPUT);
+
+  stopThruster(FR);
+  stopThruster(FL);
+  stopThruster(BR);
+  stopThruster(BL);
+  stopThruster(VR);
+  stopThruster(VL);
+
+  Serial.println("Thrusters initialized and stopped");
+
+  return;
+}
+
+void  
