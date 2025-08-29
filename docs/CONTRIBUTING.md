@@ -28,7 +28,7 @@ There are many ways to contribute to this project:
 1. **Fork the repository**
    ```bash
    # Click "Fork" on GitHub, then clone your fork
-   git clone https://github.com/YOUR-USERNAME/rov-control-system.git
+   git clone https://github.com/Abdrrrahman/ROV-beta.git
    cd rov-control-system
    ```
 
@@ -105,7 +105,7 @@ float computePID(PID& myPID, float setPoint, float measuredValue) {
 ## Reporting Bugs
 
 ### Before Reporting
-1. Check existing [Issues](../../issues) for duplicates
+1. Check existing issues for duplicates
 2. Try the latest version of the code
 3. Test with minimal configuration if possible
 
@@ -146,7 +146,6 @@ Paste any relevant serial monitor output here
 ## Feature Requests
 
 ### Before Requesting
-- Check existing [Issues](../../issues) and [Discussions](../../discussions)
 - Consider if it fits the project scope
 - Think about backward compatibility
 
@@ -296,9 +295,7 @@ Include in your PR:
 ## Communication
 
 ### Getting Help
-- **Questions**: Use [GitHub Discussions](../../discussions)
-- **Real-time chat**: [Add Discord/Slack link if you have one]
-- **Email**: [Your contact email for urgent issues]
+- **Email**: [abdrahman24sc@gmail.com]
 
 ### Discussion Etiquette
 - **Be respectful** and constructive
@@ -352,8 +349,6 @@ Outstanding contributors may be featured in:
 - Focus is on maintaining a positive, educational environment
 
 ## Questions?
-
-- **General questions**: [GitHub Discussions](../../discussions)
 - **Contribution questions**: Open an issue with the "question" label
 - **Private concerns**: Contact maintainers directly
 
