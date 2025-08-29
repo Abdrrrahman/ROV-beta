@@ -199,7 +199,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## Support
 
-- **Documentation**: See the [User Guide](docs/USER_GUIDE.md) for detailed instructions
+- **Documentation**: See the [User Guide](docs/userGuide.md) for detailed instructions
 - **Issues**: Report bugs and request features via GitHub Issues
 
 ## Roadmap
