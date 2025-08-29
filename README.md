@@ -2,7 +2,7 @@
 
 A 6-DOF (Six Degrees of Freedom) autonomous control system for underwater ROVs (Remotely Operated Vehicles) built on Arduino platform.
 
-## 🌊 Features
+## Features
 
 - **6-DOF Control**: Heave, Yaw, Surge, and Sway with independent PID controllers
 - **Real-time Control**: 200Hz control loop for responsive underwater operation
@@ -11,7 +11,7 @@ A 6-DOF (Six Degrees of Freedom) autonomous control system for underwater ROVs (
 - **Modular Design**: Easy to customize for different ROV configurations
 - **Debug Tools**: Comprehensive monitoring and diagnostic capabilities
 
-## 🚀 Quick Start
+## Quick Start
 
 ### Hardware Requirements
 
@@ -50,7 +50,7 @@ A 6-DOF (Six Degrees of Freedom) autonomous control system for underwater ROVs (
 
 5. Open Serial Monitor (9600 baud) and type `help` to get started
 
-## 🎮 Usage
+## Usage
 
 ### Basic Commands
 
@@ -87,7 +87,7 @@ test VL 30             # Test vertical left at 30%
 test FR -25            # Test front right reverse at 25%
 ```
 
-## 🏗️ System Architecture
+## System Architecture
 
 ### Control Flow
 ```
@@ -111,7 +111,7 @@ The system uses a 45-degree thruster arrangement for optimal maneuverability:
 - Vertical thrusters handle heave independently
 - Mathematical mixing ensures smooth, coordinated movement
 
-## ⚙️ Configuration
+## Configuration
 
 ### PID Tuning Guidelines
 
@@ -127,34 +127,7 @@ The system uses a 45-degree thruster arrangement for optimal maneuverability:
 - PID integral windup protection: ±5.0
 - PID output limits: ±10.0
 
-## 🛠️ Development
-
-### Sensor Implementation
-
-Currently, sensor functions return placeholder values (0.0). Implement these functions for your specific sensors:
-
-```cpp
-float readDepth() {
-    // Implement depth sensor reading
-    // Return depth in meters (negative = underwater)
-}
-
-float readMPU() {
-    // Implement IMU yaw reading  
-    // Return angle in degrees (-180 to +180)
-}
-
-float readXPos() {
-    // Implement surge position reading
-    // Return position in meters
-}
-
-float readYPos() {
-    // Implement sway position reading
-    // Return position in meters
-}
-```
-
+## Development
 ### Adding New Commands
 
 Extend the `checkForSerialCommand()` function to add custom commands:
@@ -169,7 +142,7 @@ else if (command.startsWith("mycmd ")) {
 
 Modify the `mixThrusters()` function if using a different thruster arrangement. The current implementation assumes 45-degree positioning.
 
-## 📊 Monitoring
+## Monitoring
 
 The system provides real-time feedback through serial output:
 
@@ -178,7 +151,7 @@ The system provides real-time feedback through serial output:
 - **Error Messages**: Clear feedback for invalid commands
 - **Status Indicators**: Thruster enable/disable states
 
-## 🔧 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -204,9 +177,9 @@ test VR 25
 - Check USB connection
 - Restart Arduino if needed
 
-## 🤝 Contributing
+## Contributing
 
-Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md) for details on:
+Contributions are welcome! Please read our [Contributing Guide](docs/CONTRIBUTING.md) for details on:
 
 - Code style and conventions
 - Testing procedures  
@@ -220,26 +193,24 @@ Contributions are welcome! Please read our [Contributing Guide](CONTRIBUTING.md)
 3. Test thoroughly with hardware
 4. Submit pull request with detailed description
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 📞 Support
+## Support
 
-- **Documentation**: See the [User Guide](docs/user_guide.pdf) for detailed instructions
+- **Documentation**: See the [User Guide](docs/USER_GUIDE.md) for detailed instructions
 - **Issues**: Report bugs and request features via GitHub Issues
-- **Discussions**: Join our [Discussions](https://github.com/yourusername/rov-control-system/discussions) for Q&A
 
-## 🎯 Roadmap
+## Roadmap
 
-- [ ] Implement sensor integration examples
 - [ ] Add wireless communication support
 - [ ] Create mission planning framework
 - [ ] Develop GUI control interface
 - [ ] Add data logging capabilities
 - [ ] Implement advanced control modes (station keeping, waypoint following)
 
-## ⭐ Acknowledgments
+## Acknowledgments
 
 - Arduino community for excellent servo and wire libraries
 - ROV/AUV research community for control system insights
